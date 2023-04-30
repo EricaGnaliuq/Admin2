@@ -1,0 +1,48 @@
+<ion-header class="menu-header">
+  <ion-toolbar class="content">
+    <ion-title class="name">VetCare Admin <img class="pic" src="../../assets/imgs/logo.png"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Users
+            </ion-card-title>
+          </ion-card-header>
+          <ion-list>
+            <ion-item *ngFor="let u of user | async" >
+              <ion-list>         
+                    <p>age:{{ u.payload.doc.data().age}}</p>
+                    <p>email:{{ u.payload.doc.data().email }}</p>
+                    <p>name:{{ u.payload.doc.data().name }} </p>
+                    <p>sex:{{ u.payload.doc.data().sex }}</p>
+                    <p>type:{{ u.payload.doc.data().type }} </p>
+                    <p>uid:{{ u.payload.doc.id}} </p>
+  
+               <ion-button class="del" (click)="deleteUser( u.payload.doc.id)">Delete</ion-button>  
+              </ion-list>
+            </ion-item>
+        
+              <ion-item>
+                   <ion-list>
+                    <ion-input placeholder="age" [(ngModel)]="u.age" ></ion-input>
+                    <ion-input placeholder="email" [(ngModel)]="u.email" ></ion-input>
+                    <ion-input placeholder="name" [(ngModel)]="u.name" ></ion-input>
+                    <ion-input placeholder="sex" [(ngModel)]="u.sex" ></ion-input>
+                    <ion-input placeholder="type" [(ngModel)]="u.type" ></ion-input>
+                    <ion-button class="add" (click)="addUser()" [disabled]="!u.age|| !u.email||!u.name|| !u.sex|| !u.type" >Add</ion-button>
+                  </ion-list>
+              </ion-item>
+           
+          </ion-list>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
